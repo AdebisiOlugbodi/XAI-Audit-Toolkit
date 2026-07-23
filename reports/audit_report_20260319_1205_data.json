@@ -1,0 +1,55 @@
+{
+  "model_info": {
+    "name": "CV Screening Model (Neural Network (PyTorch))",
+    "type": "Neural Network (PyTorch)",
+    "version": "1.0",
+    "training_date": "2026-03-19",
+    "features": [
+      "years_experience",
+      "keyword_match_score",
+      "employment_gap_years"
+    ],
+    "training_dataset": "Synthetic UK Recruitment Data (ONS-calibrated)",
+    "n_train": 1600,
+    "accuracy": "66.8%",
+    "roc_auc": "0.769",
+    "explainability_method": "SHAP",
+    "architecture": "Input\u219264\u219232\u219216\u21921 (BatchNorm+Dropout)"
+  },
+  "overall_compliance": {
+    "rag_summary": "\ud83d\udd34 RED \u2014 Significant bias detected. Regulatory action required.",
+    "green_count": 2,
+    "amber_count": 1,
+    "red_count": 1,
+    "fairlearn_active": true,
+    "aif360_active": true,
+    "regulatory_references": [
+      "Equality Act 2010 \u2014 s.19 Indirect Discrimination",
+      "ICO AI Auditing Framework (2023)",
+      "EHRC Technical Guidance on Employment",
+      "4/5ths Rule (widely adopted in UK practice)"
+    ]
+  },
+  "data_flags": [
+    "Disparate impact on age=16 (ratio=0.277)",
+    "Disparate impact on age=17 (ratio=0.499)",
+    "Disparate impact on age=18 (ratio=0.428)",
+    "Disparate impact on age=20 (ratio=0.661)",
+    "Disparate impact on age=22 (ratio=0.697)",
+    "Disparate impact on age=23 (ratio=0.517)",
+    "Disparate impact on age=26 (ratio=0.797)",
+    "Disparate impact on age=27 (ratio=0.499)",
+    "Disparate impact on age=32 (ratio=0.548)",
+    "Disparate impact on age=46 (ratio=0.208)",
+    "Disparate impact on age=48 (ratio=0.384)",
+    "Disparate impact on age=49 (ratio=0.535)",
+    "Disparate impact on age=54 (ratio=0.562)",
+    "Disparate impact on age=59 (ratio=0.788)",
+    "Disparate impact on age=60 (ratio=0.562)",
+    "Disparate impact on age=61 (ratio=0.661)",
+    "Disparate impact on has_disability=True (ratio=0.749)",
+    "High-risk proxy feature detected: 'region'",
+    "High-risk proxy feature detected: 'name'"
+  ],
+  "audit_passed": false
+}

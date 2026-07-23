@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-03-19T12:05:01.952021",
+  "generator": "Built-in ONS-calibrated",
+  "sources": [
+    "ONS Labour Force Survey 2023",
+    "Annual Population Survey 2023",
+    "EHRC Workforce Equality Data 2023",
+    "NOMIS Labour Market Statistics"
+  ],
+  "n_fair": 2000,
+  "n_biased": 2000,
+  "note": "Synthetic data generated from real UK demographic distributions. No real personal data used."
+}

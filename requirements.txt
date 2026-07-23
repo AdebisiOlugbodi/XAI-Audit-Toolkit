@@ -1,0 +1,19 @@
+pandas>=1.5.0
+numpy>=1.23.0
+scikit-learn>=1.1.0
+matplotlib>=3.6.0
+seaborn>=0.12.0
+streamlit>=1.20.0
+faker>=18.0.0
+
+# Optional — install separately if internet available:
+# shap>=0.41.0
+# fairlearn>=0.8.0
+# aif360>=0.5.0
+# sdv>=1.0.0
+# reportlab>=3.6.0
+# python-docx>=0.8.11
+
+# Neural Network (optional) — large download ~800MB
+# pip install torch
+# torch>=2.0.0
