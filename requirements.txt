@@ -16,4 +16,4 @@ scipy>=1.9.0
 
 # Neural Network (optional) — large download ~800MB
 # pip install torch
-# torch>=2.0.0
+torch>=2.0.0
