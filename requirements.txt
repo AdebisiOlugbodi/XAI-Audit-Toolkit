@@ -9,7 +9,7 @@ scipy>=1.9.0
 # Optional — install separately if internet available:
 shap>=0.41.0
 fairlearn>=0.8.0
-# aif360>=0.5.0
+aif360>=0.5.0
 sdv>=1.0.0
 # reportlab>=3.6.0
 # python-docx>=0.8.11
