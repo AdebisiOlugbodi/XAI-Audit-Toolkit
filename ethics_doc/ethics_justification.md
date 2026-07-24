@@ -1,13 +1,13 @@
 # Ethics Justification Statement
 ## Data Strategy for the XAI Audit Toolkit for UK SME Recruitment
 
-**Project Title:** Developing an Explainable AI Audit Toolkit for Regulatory Compliance in UK SME Recruitment
+**Project Title:** Developing an Explainable AI Audit Toolkit for Bias Detection and Regulatory Compliance in UK SME Recruitment
 
-**Prepared by:** [Your Name]
+**Prepared by:** [Adebisi Adebowale Olugbodi]
 
-**Institution:** [Your University]
+**Institution:** [University of Wolverhampton]
 
-**Supervisor:** [Supervisor Name]
+**Supervisor:** [Olawande Olusegun]
 
 **Date:** March 2026
 
