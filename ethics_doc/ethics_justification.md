@@ -3,11 +3,11 @@
 
 **Project Title:** Developing an Explainable AI Audit Toolkit for Bias Detection and Regulatory Compliance in UK SME Recruitment
 
-**Prepared by:** [Adebisi Adebowale Olugbodi]
+**Prepared by:** Adebisi Adebowale Olugbodi
 
-**Institution:** [University of Wolverhampton]
+**Institution:** University of Wolverhampton
 
-**Supervisor:** [Olawande Olusegun]
+**Supervisor:** Olawande Olusegun
 
 **Date:** March 2026
 
