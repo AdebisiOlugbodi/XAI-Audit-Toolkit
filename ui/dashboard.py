@@ -94,8 +94,8 @@ if st.session_state["audit_done"] is None:
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## ⚙️ Configuration")
-    company_name = st.text_input("Company Name", value="Acme Digital Ltd")
-    job_role     = st.text_input("Job Role",     value="Software Developer")
+    company_name = st.text_input("Company Name", value="HR Compliance Solutions Ltd")
+    job_role     = st.text_input("Job Role",     value="Healthcare Assistant")
 
     st.markdown("### Data Source")
     data_source = st.radio("Choose dataset", [
