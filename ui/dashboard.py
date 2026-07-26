@@ -1,6 +1,5 @@
 """
 XAI Audit Toolkit — Streamlit Dashboard
-
 SME-friendly web interface for running recruitment AI audits.
 Run with: streamlit run ui/dashboard.py
 """
@@ -38,7 +37,7 @@ from modules.report_generator import AuditReportGenerator
 if SHAP_AVAILABLE:
     import shap
 
-# ── Theme-aware matplotlib defaults ────────────────────────────────────────────
+# Theme-aware matplotlib defaults 
 plt.rcParams.update({
     "figure.facecolor": "none",
     "axes.facecolor":   "none",
@@ -50,7 +49,6 @@ plt.rcParams.update({
     "grid.alpha":       0.3,
 })
 
-# ── Page Config ───────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="XAI Audit Toolkit — UK SME Recruitment",
     page_icon="🔍",
@@ -64,9 +62,9 @@ st.markdown("""
         background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%);
         padding: 2rem; border-radius: 12px; color: white; margin-bottom: 2rem;
     }
-    .rag-green { background:#d4edda; border-left:4px solid #28a745; padding:0.8rem; border-radius:6px; }
-    .rag-amber { background:#fff3cd; border-left:4px solid #ffc107; padding:0.8rem; border-radius:6px; }
-    .rag-red   { background:#f8d7da; border-left:4px solid #dc3545; padding:0.8rem; border-radius:6px; }
+    .rag-green { background:#d4edda; border-left:4px solid #28a745; padding:0.8rem; border-radius:6px; color : #070706 }
+    .rag-amber { background:#fdf0d5; border-left:4px solid #e6a800; padding:0.8rem; border-radius:6px; color:#070706; font-weight:bold; }
+    .rag-red   { background:#f8d7da; border-left:4px solid #dc3545; padding:0.8rem; border-radius:6px; color:#070706}
     .section-header { font-size:1.4rem; font-weight:700; color:#1e3a5f; margin:1.5rem 0 0.5rem 0; }
     .explanation-box {
         border: 1px solid rgba(128,128,128,0.3);
@@ -82,7 +80,6 @@ st.markdown("""
 FEATURE_COLS = ["years_experience", "keyword_match_score", "employment_gap_years"]
 LABEL_COL    = "hired"
 
-# ── Session state init ────────────────────────────────────────────────────────
 for key in ["df", "model", "X_train", "X_test", "y_train", "y_test",
             "model_info", "data_results", "bias_results", "engine",
             "global_explanation", "audit_done", "company_name", "job_role"]:
@@ -91,11 +88,10 @@ for key in ["df", "model", "X_train", "X_test", "y_train", "y_test",
 if st.session_state["audit_done"] is None:
     st.session_state["audit_done"] = False
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## ⚙️ Configuration")
-    company_name = st.text_input("Company Name", value="HR Compliance Solutions Ltd")
-    job_role     = st.text_input("Job Role",     value="Healthcare Assistant")
+    company_name = st.text_input("Company Name", value="Acme Digital Ltd")
+    job_role     = st.text_input("Job Role",     value="Software Developer")
 
     st.markdown("### Data Source")
     data_source = st.radio("Choose dataset", [
@@ -125,7 +121,6 @@ with st.sidebar:
 
     run_btn = st.button("🚀 Run Audit", use_container_width=True)
 
-    # ── Optional Library Status ───────────────────────────────────────────
     st.markdown("---")
     st.markdown("### 🔧 Optional Libraries")
     dep_list = get_dependency_status_list()
@@ -148,17 +143,15 @@ with st.sidebar:
         "Data calibrated to ONS/LFS 2023."
     )
 
-# ── Header ────────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="main-header">
     <h1 style="margin:0;font-size:2rem;">🔍 XAI Audit Toolkit</h1>
     <p style="margin:0.5rem 0 0 0;opacity:0.9;font-size:1.1rem;">
-        Explainable AI Compliance Audit System for UK SME Recruitment
+        Explainable AI Compliance for UK SME Recruitment
     </p>
 </div>
 """, unsafe_allow_html=True)
 
-# ── Run Audit ─────────────────────────────────────────────────────────────────
 if run_btn:
     with st.spinner("Running full audit pipeline..."):
         # Load data
@@ -256,7 +249,6 @@ if run_btn:
         })
     st.success("✅ Audit complete!")
 
-# ── Results ───────────────────────────────────────────────────────────────────
 if st.session_state.get("audit_done"):
     df             = st.session_state["df"]
     model          = st.session_state["model"]
@@ -294,16 +286,16 @@ if st.session_state.get("audit_done"):
     tabs = st.tabs(["📋 Dataset", "📊 Bias Detection", "🔍 Data Audit",
                     "💡 Explainability", "👤 Candidate Lookup", "📄 Report"])
 
-    # ── TAB 0: Dataset ────────────────────────────────────────────────────
+    # TAB 0: Dataset 
     with tabs[0]:
         st.markdown('<p class="section-header">Generated Dataset Overview</p>',
                     unsafe_allow_html=True)
 
-        # ── Dataset info banner ───────────────────────────────────────────
-        bias_flag = "⚠️ BIASED — Demographic Penalties Injected" if "Bias" in data_source else "✅ FAIR — No Demographic Penalties"
+        #  Dataset info banner 
+        bias_flag = "⚠️ BIASED — Demographic Penalties Injected" if "Biased" in data_source else "✅ FAIR — No Demographic Penalties"
         st.info(f"**Dataset:** {data_source}  |  **Records:** {len(df):,}  |  **Features:** {len(df.columns)}  |  **Status:** {bias_flag}")
 
-        # ── Model performance card ────────────────────────────────────────
+        #  Model performance card 
         st.markdown("#### 🤖 Model Performance on Hold-Out Test Set")
         st.caption(f"All metrics computed on {model_info['n_test']} held-out test records "
                    f"(20% stratified split, never seen during training)")
@@ -330,7 +322,7 @@ if st.session_state.get("audit_done"):
                 "Actual: HIRED":     [model_info["fn"], model_info["tp"]],
             }
             cm_df = pd.DataFrame(cm_data).set_index("")
-            st.dataframe(cm_df, use_container_width=True)
+            st.dataframe(cm_df, width="stretch")
             st.caption(f"TP={model_info['tp']}  FP={model_info['fp']}  "
                        f"TN={model_info['tn']}  FN={model_info['fn']}")
 
@@ -357,7 +349,7 @@ if st.session_state.get("audit_done"):
 
         st.markdown("---")
 
-        # ── Dataset preview ───────────────────────────────────────────────
+        # Dataset preview 
         st.markdown("#### 📄 Dataset Preview (First 20 Records)")
         display_cols = ["candidate_id", "gender", "age", "ethnicity", "region",
                         "has_disability", "education_level", "years_experience",
@@ -366,7 +358,7 @@ if st.session_state.get("audit_done"):
         display_cols = [c for c in display_cols if c in df.columns]
         st.dataframe(df[display_cols].head(20), use_container_width=True, hide_index=True)
 
-        # ── Feature statistics ────────────────────────────────────────────
+        # Feature statistics 
         st.markdown("#### 📊 Feature Statistics")
         feat_cols = ["years_experience", "keyword_match_score",
                      "employment_gap_years", "cv_score"]
@@ -374,7 +366,7 @@ if st.session_state.get("audit_done"):
         stat_df = df[feat_cols].describe().round(4)
         st.dataframe(stat_df, use_container_width=True)
 
-        # ── Score distribution ────────────────────────────────────────────
+        # Score distribution
         st.markdown("#### 📈 CV Score Distribution")
         fig, axes = plt.subplots(1, 2, figsize=(12, 4))
 
@@ -401,7 +393,7 @@ if st.session_state.get("audit_done"):
         st.pyplot(fig)
         plt.close()
 
-        # ── Download button ────────────────────────────────────────────────
+        #  Download button 
         st.markdown("#### ⬇️ Download Dataset")
         csv_data = df.to_csv(index=False)
         st.download_button(
@@ -412,7 +404,7 @@ if st.session_state.get("audit_done"):
             help="Downloads the complete generated dataset including predictions"
         )
 
-    # ── TAB 1: Bias Detection ─────────────────────────────────────────────
+    # TAB 1: Bias Detection 
     with tabs[1]:
         st.markdown('<p class="section-header">Fairness Metrics by Protected Characteristic</p>',
                     unsafe_allow_html=True)
@@ -490,26 +482,28 @@ if st.session_state.get("audit_done"):
                     ])
                     st.dataframe(dir_df, use_container_width=True, hide_index=True)
 
-    # ── TAB 2: Data Audit ─────────────────────────────────────────────────
+    # TAB 2: Data Audit 
     with tabs[2]:
         st.markdown('<p class="section-header">Data Quality & Representation Audit</p>',
                     unsafe_allow_html=True)
         st.subheader("Demographic Representation")
-        rep      = data_results.get("representation", {})
-        rep_cols = st.columns(min(len(rep), 4))
+        rep     = data_results.get("representation", {})
         for i, (char, groups) in enumerate(rep.items()):
-            with rep_cols[i % 4]:
+            if i % 2 == 0:
+                pie_cols = st.columns(2)
+            with pie_cols[i % 2]:
                 labels = list(groups.keys())
                 sizes  = [g["pct"] for g in groups.values()]
-                fig, ax = plt.subplots(figsize=(3.5, 3.5))
+                fig, ax = plt.subplots(figsize=(4, 4.5))
                 colors  = plt.cm.Blues(np.linspace(0.4, 0.85, len(labels)))
                 wedges, _, _ = ax.pie(sizes, labels=None, autopct="%1.0f%%",
                                       colors=colors, startangle=90,
                                       textprops={"fontsize": 8})
                 ax.set_title(char.replace("_", " ").title(), fontsize=10, fontweight="bold")
-                ax.legend(wedges, [l[:15] for l in labels], loc="lower center",
-                          fontsize=7, bbox_to_anchor=(0.5, -0.15), ncol=2)
-                plt.tight_layout()
+                ax.legend(wedges, [l[:18] for l in labels], loc="upper center",
+                          fontsize=6, bbox_to_anchor=(0.5, -0.02), ncol=2,
+                          frameon=False)
+                plt.subplots_adjust(bottom=0.15)
                 st.pyplot(fig)
                 plt.close()
 
@@ -532,7 +526,7 @@ if st.session_state.get("audit_done"):
         else:
             st.success("✅ No critical data issues detected.")
 
-    # ── TAB 3: Explainability ─────────────────────────────────────────────
+    # TAB 3: Explainability 
     with tabs[3]:
         st.markdown('<p class="section-header">Model Explainability</p>',
                     unsafe_allow_html=True)
@@ -591,7 +585,7 @@ if st.session_state.get("audit_done"):
         st.pyplot(fig)
         plt.close()
 
-    # ── TAB 4: Candidate Lookup ───────────────────────────────────────────
+    # TAB 4: Candidate Lookup
     with tabs[4]:
         st.markdown('<p class="section-header">Individual Candidate Explanation</p>',
                     unsafe_allow_html=True)
@@ -649,7 +643,7 @@ if st.session_state.get("audit_done"):
                 "a human review of this automated decision."
             )
 
-    # ── TAB 5: Report ─────────────────────────────────────────────────────
+    # TAB 5: Report 
     with tabs[5]:
         st.markdown('<p class="section-header">Audit Report</p>', unsafe_allow_html=True)
 
