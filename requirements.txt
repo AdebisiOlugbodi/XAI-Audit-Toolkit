@@ -14,6 +14,6 @@ sdv>=1.0.0
 # reportlab>=3.6.0
 # python-docx>=0.8.11
 
-Neural Network (optional) — large download ~800MB
+# Neural Network (optional) — large download ~800MB
 # pip install torch
 torch>=2.0.0
