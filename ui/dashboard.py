@@ -153,7 +153,7 @@ st.markdown("""
 <div class="main-header">
     <h1 style="margin:0;font-size:2rem;">🔍 XAI Audit Toolkit</h1>
     <p style="margin:0.5rem 0 0 0;opacity:0.9;font-size:1.1rem;">
-        Explainable AI Compliance for UK SME Recruitment
+        Explainable AI Compliance Audit System for UK SME Recruitment
     </p>
 </div>
 """, unsafe_allow_html=True)
