@@ -25,7 +25,7 @@ from modules.dependencies import SDV_AVAILABLE
 
 if SDV_AVAILABLE:
     from sdv.single_table import GaussianCopulaSynthesizer
-    from sdv.metadata import SingleTableMetadata
+    from sdv.metadata import Metadata
 
 # These are the real UK ONS/LFS Distributions 
 
@@ -260,8 +260,7 @@ def _generate_with_sdv(n_candidates: int, introduce_bias: bool, seed: int) -> pd
     seed_input["has_disability"] = seed_input["has_disability"].astype(str)
 
     print("[Data Pipeline] Fitting SDV GaussianCopulaSynthesizer...")
-    metadata    = SingleTableMetadata()
-    metadata.detect_from_dataframe(seed_input)
+    metadata    = Metadata.detect_from_dataframes({"candidates": seed_input})
     synthesizer = GaussianCopulaSynthesizer(metadata, enforce_min_max_values=True)
     synthesizer.fit(seed_input)
 
